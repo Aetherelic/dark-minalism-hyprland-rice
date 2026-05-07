@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+THEME="$HOME/.config/rofi/themes/premium-unixporn.rasi"
+
+choice="$(
+  cat <<'MENU' | rofi -dmenu -i -p "keys" -theme "$THEME"
+󰹑  SUPER+SHIFT+S      Showcase Mode
+󰄀  PRINT              Full Screenshot
+󰄀  SHIFT+PRINT        Area Screenshot
+󰄀  CTRL+PRINT         Copy Area Screenshot
+󰄀  SUPER+PRINT        Edit Screenshot
+󰌾  SUPER+SHIFT+L      Lock Screen
+󰐥  SUPER+L            Power Menu
+󰍜  ALT+SPACE          App Launcher
+󰍜  SUPER+SPACE        App Launcher
+󰆍  SUPER+RETURN       Terminal
+󰆍  SUPER+SHIFT+RETURN Terminal Flex
+󰖲  SUPER+CTRL+SPACE   Rice Control Center
+󰖲  Restart Waybar
+󰑓  Reload Hyprland
+󰸉  Refresh Wallpaper
+MENU
+)"
+
+case "$choice" in
+  *"Showcase Mode"*) "$HOME/.config/hypr/scripts/premium-showcase.sh" ;;
+  *"Full Screenshot"*) "$HOME/.config/hypr/scripts/premium-screenshot.sh" full ;;
+  *"Area Screenshot"*) "$HOME/.config/hypr/scripts/premium-screenshot.sh" area ;;
+  *"Copy Area"*) "$HOME/.config/hypr/scripts/premium-screenshot.sh" copy ;;
+  *"Edit Screenshot"*) "$HOME/.config/hypr/scripts/premium-screenshot.sh" edit ;;
+  *"Lock Screen"*) hyprlock ;;
+  *"Power Menu"*) "$HOME/.config/hypr/scripts/legend-eww-powermenu.sh" ;;
+  *"App Launcher"*) rofi -show drun -theme "$THEME" ;;
+  *"Terminal Flex"*) kitty --title terminal-flex bash -lc 'terminal-flex' ;;
+  *"Terminal"*) kitty ;;
+  *"Rice Control Center"*) "$HOME/.local/bin/rice-control" ;;
+  *"Restart Waybar"*)
+    pkill waybar 2>/dev/null || true
+    waybar -c "$HOME/.config/waybar/config.jsonc" -s "$HOME/.config/waybar/style.css" >/tmp/waybar.log 2>&1 &
+    notify-send "rice" "waybar restarted" -t 1500
+    ;;
+  *"Reload Hyprland"*)
+    hyprctl reload
+    notify-send "rice" "hyprland reloaded" -t 1500
+    ;;
+  *"Refresh Wallpaper"*)
+    "$HOME/.config/hypr/scripts/wallpaper.sh"
+    notify-send "rice" "wallpaper refreshed" -t 1500
+    ;;
+esac

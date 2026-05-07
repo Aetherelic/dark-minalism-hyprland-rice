@@ -1,0 +1,13 @@
+*.bak
+.bak-
+.broken
+*.log
+*.tmp
+.DS_Store
+
+**/backups/
+**/backups-/
+**/backups-nobara/
+**/.old
+
+screenshots/*.tmp

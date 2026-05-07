@@ -1,0 +1,12 @@
+@define-color accent_color #9db6ad;
+@define-color accent_bg_color #9db6ad;
+@define-color accent_fg_color #080d10;
+
+selection {
+  background-color: #9db6ad;
+  color: #080d10;
+}
+
+window {
+  background-color: #080d10;
+}

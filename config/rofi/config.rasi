@@ -1,0 +1,18 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    terminal: "kitty";
+
+    drun-display-format: "{icon}  {name}";
+    display-drun: "";
+    display-run: "";
+    display-window: "󰖲";
+
+    sidebar-mode: false;
+    disable-history: false;
+    sort: true;
+    matching: "fuzzy";
+}
+
+@theme "~/.config/rofi/themes/premium-unixporn.rasi"

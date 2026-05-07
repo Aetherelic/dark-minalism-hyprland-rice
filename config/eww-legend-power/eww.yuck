@@ -1,0 +1,86 @@
+(defpoll uptime :interval "30s" "~/.config/eww-legend-power/scripts/uptime.sh")
+
+(defwidget power-button [icon label action class]
+  (button
+    :class "power-button ${class}"
+    :onclick action
+    (box
+      :orientation "vertical"
+      :space-evenly false
+      :halign "center"
+      :valign "center"
+      :spacing 8
+      (label :class "power-icon" :text icon)
+      (label :class "power-label" :text label))))
+
+(defwidget power-menu []
+  (box
+    :class "power-root"
+    :orientation "horizontal"
+    :space-evenly false
+    :spacing 28
+
+    (box
+      :class "power-info"
+      :orientation "vertical"
+      :space-evenly false
+      :valign "center"
+      :spacing 22
+
+      (box
+        :class "user-pill"
+        :orientation "horizontal"
+        :space-evenly false
+        :halign "start"
+        :spacing 12
+        (label :class "user-icon" :text "󰀄")
+        (label :class "user-name" :text "aetherelic"))
+
+      (box
+        :class "uptime-pill"
+        :orientation "horizontal"
+        :space-evenly false
+        :halign "start"
+        :spacing 12
+        (label :class "uptime-icon" :text "󰔚")
+        (label :class "uptime-text" :text "uptime: ${uptime}"))
+
+      (label
+        :class "power-subtitle"
+        :halign "start"
+        :text "premium unixporn session"))
+
+    (box
+      :class "power-grid"
+      :orientation "vertical"
+      :space-evenly false
+      :spacing 18
+
+      (box
+        :orientation "horizontal"
+        :space-evenly false
+        :spacing 18
+        (power-button :icon "󰌾" :label "lock" :class "soft" :action "hyprlock && eww -c ~/.config/eww-legend-power close legend_power")
+        (power-button :icon "󰗼" :label "logout" :class "soft" :action "eww -c ~/.config/eww-legend-power close legend_power && hyprctl dispatch exit")
+        (power-button :icon "󰜉" :label "reboot" :class "soft" :action "eww -c ~/.config/eww-legend-power close legend_power && systemctl reboot"))
+
+      (box
+        :orientation "horizontal"
+        :space-evenly false
+        :spacing 18
+        (power-button :icon "󰤄" :label "sleep" :class "soft" :action "eww -c ~/.config/eww-legend-power close legend_power && systemctl suspend")
+        (power-button :icon "󰏤" :label "pause" :class "soft" :action "eww -c ~/.config/eww-legend-power close legend_power")
+        (power-button :icon "󰐥" :label "power" :class "danger" :action "eww -c ~/.config/eww-legend-power close legend_power && systemctl poweroff")))))
+
+(defwindow legend_power
+  :monitor 0
+  :stacking "overlay"
+  :exclusive false
+  :focusable true
+  :geometry (geometry
+    :x "0px"
+    :y "0px"
+    :width "940px"
+    :height "360px"
+    :anchor "center center")
+  (power-menu))

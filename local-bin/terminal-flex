@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+clear
+"$HOME/.local/bin/ricefetch"
+
+printf "\n"
+printf "\033[38;2;139;152;146mpress enter to open btop...\033[0m"
+read -r _
+
+btop

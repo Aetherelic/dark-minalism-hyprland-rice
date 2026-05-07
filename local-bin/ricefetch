@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+RESET='\033[0m'
+FG='\033[38;2;220;224;218m'
+MUTED='\033[38;2;138;150;145m'
+SUBTLE='\033[38;2;95;111;107m'
+ACCENT='\033[38;2;157;182;173m'
+ACCENT2='\033[38;2;195;204;184m'
+
+ASCII_FILE="$HOME/.config/ricefetch/ascii.txt"
+
+RIGHT_COL=39
+TOP_ROW=2
+BOX_W=68
+
+trim() {
+  printf "%s" "$1" | sed 's/[[:space:]][[:space:]]*/ /g; s/^ //; s/ $//' | cut -c1-"$2"
+}
+
+move() {
+  printf '\033[%s;%sH' "$1" "$2"
+}
+
+box_border() {
+  local border_w=$((BOX_W + 2))
+  printf "%b+%s+%b" "$SUBTLE" "$(printf '%*s' "$border_w" '' | tr ' ' '-')" "$RESET"
+}
+
+box_line() {
+  local colour="$1"
+  local text="$2"
+  printf "%b|%b %b%-*.*s%b %b|%b" \
+    "$SUBTLE" "$RESET" "$colour" "$BOX_W" "$BOX_W" "$text" "$RESET" "$SUBTLE" "$RESET"
+}
+
+OS_NAME="$(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-Linux}")"
+OS_NAME="$(echo "$OS_NAME" | sed 's/ (GNOME Edition)//g; s/ x86_64//g')"
+HOST_NAME="$(hostname 2>/dev/null || echo unknown)"
+KERNEL="$(uname -r 2>/dev/null | sed 's/\.x86_64//')"
+WM_NAME="Hyprland"
+SHELL_NAME="$(basename "${SHELL:-bash}")"
+
+CPU="$(lscpu 2>/dev/null | awk -F: '/Model name/ {gsub(/^[ \t]+/, "", $2); print $2; exit}')"
+CPU="$(echo "$CPU" | sed 's/AMD //; s/ 6-Core Processor//; s/ Processor//')"
+
+if command -v nvidia-smi >/dev/null 2>&1; then
+  GPU="$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -n1)"
+else
+  GPU="$(lspci 2>/dev/null | grep -iE 'vga|3d|display' | head -n1 | sed 's/.*: //')"
+fi
+GPU="$(echo "$GPU" | sed 's/NVIDIA Corporation //; s/GeForce //')"
+
+MEMORY="$(free -h 2>/dev/null | awk '/^Mem:/ {print $3 " / " $2}')"
+DISK="$(df -h / 2>/dev/null | awk 'NR==2 {print $3 " / " $2 " (" $5 ")"}')"
+UPTIME="$(uptime -p 2>/dev/null | sed 's/^up //')"
+PKGS="$(rpm -qa 2>/dev/null | wc -l | tr -d ' ') rpm"
+
+OS_NAME="$(trim "$OS_NAME" 22)"
+HOST_NAME="$(trim "$HOST_NAME" 22)"
+KERNEL="$(trim "$KERNEL" 22)"
+CPU="$(trim "$CPU" 22)"
+GPU="$(trim "$GPU" 22)"
+MEMORY="$(trim "$MEMORY" 22)"
+DISK="$(trim "$DISK" 22)"
+UPTIME="$(trim "$UPTIME" 22)"
+PKGS="$(trim "$PKGS" 22)"
+
+clear
+printf '\033[?25l'
+
+# Draw ASCII independently so Unicode width cannot break the card alignment
+if [ -f "$ASCII_FILE" ]; then
+  row="$TOP_ROW"
+  while IFS= read -r line; do
+    move "$row" 2
+    printf "%b%s%b" "$ACCENT" "$line" "$RESET"
+    row=$((row + 1))
+  done < "$ASCII_FILE"
+fi
+
+r="$TOP_ROW"
+
+move "$r" "$RIGHT_COL"; box_border; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$ACCENT2" " aetherelic // premium unixporn terminal"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_border; r=$((r+2))
+
+move "$r" "$RIGHT_COL"; box_line "$SUBTLE" " +------------------+                    +------------------+"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$ACCENT" " | software         |                    | hardware         |"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$SUBTLE" " +------------------+                    +------------------+"; r=$((r+1))
+
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-20s    %-8s -> %-20s' "os" "$OS_NAME" "cpu" "$CPU")"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-20s    %-8s -> %-20s' "host" "$HOST_NAME" "gpu" "$GPU")"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-20s    %-8s -> %-20s' "kernel" "$KERNEL" "memory" "$MEMORY")"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-20s    %-8s -> %-20s' "wm" "$WM_NAME" "disk" "$DISK")"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-20s    %-8s -> %-20s' "shell" "$SHELL_NAME" "uptime" "$UPTIME")"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$FG" "$(printf '  %-8s -> %-22s' "pkgs" "$PKGS")"; r=$((r+2))
+
+move "$r" "$RIGHT_COL"; box_border; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$MUTED" " palette   sage / charcoal / ivory / rose"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_line "$ACCENT" " nobara hyprland :: curated desktop session"; r=$((r+1))
+move "$r" "$RIGHT_COL"; box_border; r=$((r+2))
+
+move "$r" 1
+printf '\033[?25h'

@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+THEME="$HOME/.config/rofi/themes/premium-unixporn.rasi"
+
+choice="$(
+  printf '%s\n' \
+    "󰹑  Showcase Mode" \
+    "󰕮  Toggle Dashboard" \
+    "󰖲  Restart Waybar" \
+    "󰍡  Toggle SwayNC" \
+    "󰸉  Refresh Wallpaper" \
+    "󰄀  Screenshot Area" \
+    "󰉋  Open Config Folder" \
+    "󰑓  Reload Hyprland" \
+    "󰌾  Lock Screen" \
+    "󰐥  Power Menu" |
+  rofi -dmenu -i -p "rice" -theme "$THEME"
+)"
+
+case "$choice" in
+  *"Showcase Mode"*)
+    "$HOME/.config/hypr/scripts/premium-showcase.sh"
+    ;;
+
+  *"Toggle Dashboard"*)
+    "$HOME/.config/hypr/scripts/legenddash-toggle.sh" 2>/dev/null || "$HOME/.config/hypr/scripts/legenddash-launch.sh"
+    ;;
+
+  *"Restart Waybar"*)
+    pkill waybar 2>/dev/null || true
+    waybar -c "$HOME/.config/waybar/config.jsonc" -s "$HOME/.config/waybar/style.css" >/tmp/waybar.log 2>&1 &
+    notify-send "rice" "waybar restarted" -t 1500
+    ;;
+
+  *"Toggle SwayNC"*)
+    swaync-client -t
+    ;;
+
+  *"Refresh Wallpaper"*)
+    "$HOME/.config/hypr/scripts/wallpaper.sh"
+    notify-send "rice" "wallpaper refreshed" -t 1500
+    ;;
+
+  *"Screenshot Area"*)
+    "$HOME/.config/hypr/scripts/premium-screenshot.sh" area
+    ;;
+
+  *"Open Config Folder"*)
+    kitty --title rice-configs bash -lc 'cd ~/.config && ls && exec bash'
+    ;;
+
+  *"Reload Hyprland"*)
+    hyprctl reload
+    notify-send "rice" "hyprland reloaded" -t 1500
+    ;;
+
+  *"Lock Screen"*)
+    hyprlock
+    ;;
+
+  *"Power Menu"*)
+    "$HOME/.config/hypr/scripts/legend-eww-powermenu.sh"
+    ;;
+esac

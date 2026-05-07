@@ -1,0 +1,122 @@
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", monospace;
+}
+
+.power-root {
+  background: rgba(8, 13, 16, 0.86);
+  border: 1px solid rgba(157, 182, 173, 0.42);
+  border-radius: 30px;
+  padding: 34px;
+  color: #d7dbd2;
+  box-shadow: 0 0 38px rgba(0, 0, 0, 0.45);
+}
+
+.power-info {
+  min-width: 360px;
+  padding: 10px 12px;
+}
+
+.user-pill {
+  background: rgba(157, 182, 173, 0.22);
+  border: 1px solid rgba(195, 204, 184, 0.30);
+  border-radius: 999px;
+  padding: 12px 20px;
+}
+
+.user-icon {
+  color: #080d10;
+  font-size: 18px;
+}
+
+.user-name {
+  color: #080d10;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.uptime-pill {
+  background: rgba(15, 26, 29, 0.72);
+  border: 1px solid rgba(157, 182, 173, 0.22);
+  border-radius: 999px;
+  padding: 12px 18px;
+}
+
+.uptime-icon {
+  color: #c3ccb8;
+  font-size: 16px;
+}
+
+.uptime-text {
+  color: #d7dbd2;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.power-subtitle {
+  color: #8b9892;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.power-grid {
+  padding: 2px;
+}
+
+.power-button {
+  min-width: 124px;
+  min-height: 124px;
+  background: rgba(157, 182, 173, 0.16);
+  border: 1px solid rgba(157, 182, 173, 0.24);
+  border-radius: 24px;
+  transition: 180ms ease;
+}
+
+.power-button:hover {
+  background: rgba(157, 182, 173, 0.28);
+  border-color: rgba(195, 204, 184, 0.52);
+}
+
+.power-button:active {
+  background: rgba(195, 204, 184, 0.20);
+}
+
+.power-icon {
+  color: #d7dbd2;
+  font-size: 34px;
+}
+
+.power-label {
+  color: #8b9892;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.power-button:hover .power-icon {
+  color: #f0f2e8;
+}
+
+.power-button:hover .power-label {
+  color: #c3ccb8;
+}
+
+.power-button.danger {
+  background: rgba(185, 130, 141, 0.22);
+  border-color: rgba(185, 130, 141, 0.34);
+}
+
+.power-button.danger:hover {
+  background: rgba(185, 130, 141, 0.36);
+  border-color: rgba(185, 130, 141, 0.62);
+}
+
+.power-button.danger .power-icon {
+  color: #f0f2e8;
+}
+
+.power-button.danger .power-label {
+  color: #d4a2aa;
+}
