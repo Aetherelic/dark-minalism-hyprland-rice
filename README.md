@@ -1,3 +1,4 @@
+<img width="2102" height="1213" alt="swappy-20260507_203750" src="https://github.com/user-attachments/assets/c01136ac-76ae-442d-845f-65eafa4a470b" />
 cd ~/premium-unixporn-hyprland-rice || exit 1
 
 cat > README.md <<'EOF'
@@ -22,6 +23,12 @@ Custom Keybind Menu
 
 Hyprlock Menu
 <img width="1108" height="814" alt="swappy-20260507_203818" src="https://github.com/user-attachments/assets/0218891e-dc8f-4432-a7d5-948bb0122a49" />
+
+
+<img width="2102" height="1213" alt="swappy-20260507_203750" src="https://github.com/user-attachments/assets/c01136ac-76ae-442d-845f-65eafa4a470b" />
+
+
+<img width="2560" height="1440" alt="swappy-20260507_203757" src="https://github.com/user-attachments/assets/6a529aa9-bb59-4a89-87cf-c79cd10fa0f4" />
 
 ```text
 screenshots/
