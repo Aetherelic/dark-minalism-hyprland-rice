@@ -11,9 +11,10 @@ This setup is designed around a cohesive charcoal / sage / teal / ivory visual l
 
 ## Preview
 
+Main Display
 <img width="2560" height="1438" alt="swappy-20260507_203654" src="https://github.com/user-attachments/assets/f8fbacd8-5463-4cb7-903b-bdea11b7abeb" />
 
-
+Hyprlock
 <img width="1110" height="535" alt="swappy-20260507_203835" src="https://github.com/user-attachments/assets/6b1b4673-b11a-4116-a350-b89d1ce81b99" />
 
 
