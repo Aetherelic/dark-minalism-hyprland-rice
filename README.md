@@ -1,4 +1,3 @@
-<img width="2102" height="1213" alt="swappy-20260507_203750" src="https://github.com/user-attachments/assets/c01136ac-76ae-442d-845f-65eafa4a470b" />
 cd ~/premium-unixporn-hyprland-rice || exit 1
 
 cat > README.md <<'EOF'
@@ -14,6 +13,9 @@ This setup is designed around a cohesive charcoal / sage / teal / ivory visual l
 
 Main Display
 <img width="2560" height="1438" alt="swappy-20260507_203654" src="https://github.com/user-attachments/assets/f8fbacd8-5463-4cb7-903b-bdea11b7abeb" />
+
+Dashboard
+<img width="1867" height="1052" alt="swappy-20260507_204731" src="https://github.com/user-attachments/assets/0bde24fc-8606-4a6a-92b5-243645f19e39" />
 
 Hyprlock
 <img width="1110" height="535" alt="swappy-20260507_203835" src="https://github.com/user-attachments/assets/6b1b4673-b11a-4116-a350-b89d1ce81b99" />
