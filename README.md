@@ -17,6 +17,8 @@ Main Display
 Hyprlock
 <img width="1110" height="535" alt="swappy-20260507_203835" src="https://github.com/user-attachments/assets/6b1b4673-b11a-4116-a350-b89d1ce81b99" />
 
+Ricing Menu
+<img width="1076" height="794" alt="swappy-20260507_203732" src="https://github.com/user-attachments/assets/cd545671-514a-4d2e-81e9-0f88d59ba0d5" />
 
 <img width="1108" height="814" alt="swappy-20260507_203818" src="https://github.com/user-attachments/assets/0218891e-dc8f-4432-a7d5-948bb0122a49" />
 
