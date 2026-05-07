@@ -33,7 +33,26 @@ Btop
 <img width="2560" height="1440" alt="swappy-20260507_203757" src="https://github.com/user-attachments/assets/6a529aa9-bb59-4a89-87cf-c79cd10fa0f4" />
 
 ```text
-screenshots/
+Main Display
+<img width="2560" height="1438" alt="swappy-20260507_203654" src="https://github.com/user-attachments/assets/f8fbacd8-5463-4cb7-903b-bdea11b7abeb" />
+
+Dashboard
+<img width="1867" height="1052" alt="swappy-20260507_204731" src="https://github.com/user-attachments/assets/0bde24fc-8606-4a6a-92b5-243645f19e39" />
+
+Hyprlock
+<img width="1110" height="535" alt="swappy-20260507_203835" src="https://github.com/user-attachments/assets/6b1b4673-b11a-4116-a350-b89d1ce81b99" />
+
+Custom Keybind Menu
+<img width="1076" height="794" alt="swappy-20260507_203732" src="https://github.com/user-attachments/assets/cd545671-514a-4d2e-81e9-0f88d59ba0d5" />
+
+Hyprlock Menu
+<img width="1108" height="814" alt="swappy-20260507_203818" src="https://github.com/user-attachments/assets/0218891e-dc8f-4432-a7d5-948bb0122a49" />
+
+Custom Terminal
+<img width="2102" height="1213" alt="swappy-20260507_203750" src="https://github.com/user-attachments/assets/c01136ac-76ae-442d-845f-65eafa4a470b" />
+
+Btop
+<img width="2560" height="1440" alt="swappy-20260507_203757" src="https://github.com/user-attachments/assets/6a529aa9-bb59-4a89-87cf-c79cd10fa0f4" />
 ```
 
 Recommended screenshot flow:
